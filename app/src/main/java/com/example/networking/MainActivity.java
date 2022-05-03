@@ -47,7 +47,9 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         Log.d("MainActivity", json);
         Gson gson = new Gson();
         Type type = new TypeToken<List<Mountain>>(){}.getType();
-        mountainList = gson.fromJson(json,type);
+        List<Mountain> tmp = gson.fromJson(json,type);
+        mountainList.addAll(tmp);
+        adapter.notifyDataSetChanged();
         Log.d("MainActivity", String.valueOf(mountainList.size()));
         Log.d("MainActivity",mountainList.get(0).getName());
 
